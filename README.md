@@ -101,9 +101,9 @@ Initial Description and Link:
 Revision/Addition Description and Link:
 
 # Guibril R
-Initial Description and Link: https://raw.githubusercontent.com/japhet125/SPRING2026TIDYVERSE/refs/heads/main/AI_Job_Market_Trends_2026.csv"
+Initial Description and Link: https://raw.githubusercontent.com/japhet125/SPRING2026TIDYVERSE/refs/heads/main/AI_Job_Market_Trends_2026.csv
 
-Guibril Ramde added AI_Job_Market_Trends_2026.csv file and qmd file
+Guibril Ramde added AI_Job_Market_Trends_2026.csv file and qmd file: https://github.com/japhet125/SPRING2026TIDYVERSE/blob/main/Guibril_Vignette.qmd
 
 Revision/Addition Description and Link: https://www.kaggle.com/datasets/sohaibdevv/ai-and-data-science-job-market-2025-2026
 
