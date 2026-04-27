@@ -145,11 +145,16 @@ cities_sf <- cities_joined |>
   st_as_sf(coords = c("long", "lat"), crs = 4326)
 
 
+#the vibe is very Vegas in the 80s
 ggplot() +
+  #change the map colors
     geom_sf(data = states_sf, fill = "pink", color = "orange") +
     geom_sf(data = cities_sf, aes(color = Price_USD), size = 8) + 
+  #ensure the colors get darker as the price gets higher
+  scale_color_gradient(low = "#ADD8E6", high = "#000080") +
+  #remove lines/background
     theme_void() + 
-    labs(color = "Egg Price in Dollars")
+    labs(color = "Egg Price in Dollars", title = "Price of a Dozen Eggs in March 2026")
 
 ```
 
@@ -159,8 +164,10 @@ Are they normally distributed?
 
 ```{r}
 grocery_inflation |> 
+  #filter for one product in one month
   filter(Item_Key == "Eggs_12") |> 
   filter(Month_Name == "March 2026") |>
+  #specify only x for histograms
   ggplot(aes(x = Price_USD)) +
   #specify binwidth or bins (or leave it blank and let ggpplot pick)
   geom_histogram(bins = 40)
@@ -171,24 +178,33 @@ grocery_inflation |>
 grocery_inflation |> 
   filter(Item_Key == "Eggs_12") |> 
   filter(Month_Name == "March 2026") |>
+  #specify fill for color
   ggplot(aes(x = Breakfast_Basket_USD, fill = Region)) +
   geom_histogram() +
+  #remove the legend
   theme(legend.position = "none")
 ```
 
 ### Scatterplots
 
-Plotting the population against the price of eggs
+Plotting the population against the price of eggs:
 
 ```{r}
 
 grocery_inflation |> 
+  #population in millions instead of the actual number
   mutate(pop_est_mils = Population_Estimate/1000000) |>
   filter(Item_Key == "Eggs_12") |> 
   filter(Month_Name == "March 2026") |>
+  #plotting population vs. price, breaking out color by country
   ggplot(aes(x = pop_est_mils, y = Price_USD, color = Country)) +
+  #changing the shape of the points
   geom_point(shape = 3) + 
+  #removing legend (othrwise it's overwhelming)
   theme(legend.position = "none") +
+  #add titles
   labs(title = "Population vs. Egg Price", x = "City Population in Millions", y = "Egg Price in USD")
 
 ```
+
+As population goes up, it looks like egg prices go down.
